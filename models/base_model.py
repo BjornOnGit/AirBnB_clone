@@ -3,7 +3,9 @@
 
 from datetime import datetime
 from uuid import uuid4
+from .engine.file_storage import FileStorage
 import models
+
 
 class BaseModel:
     """Represents the BaseModel of the HBnB project.
@@ -13,6 +15,7 @@ class BaseModel:
         created_at (datetime): The date and time when the instance was created.
         updated_at (datetime): The date and time when the instance was last updated.
     """
+    
 
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel instance.
@@ -25,6 +28,7 @@ class BaseModel:
         self.id = str(uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
+        self.storage = FileStorage('models/engine/file.json')
         if len(kwargs) != 0:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
@@ -46,6 +50,9 @@ class BaseModel:
             dict: A dictionary containing the instance's attributes and class name.
         """
         rdict = self.__dict__.copy()
+        rdict.pop('storage', None)
+        for key, value in rdict.items():
+            print(f"Key: {key}, Type: {type(value)}")
         rdict["created_at"] = self.created_at.isoformat()
         rdict["updated_at"] = self.updated_at.isoformat()
         rdict["__class__"] = type(self).__name__

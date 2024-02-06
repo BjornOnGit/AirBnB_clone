@@ -13,6 +13,6 @@ class City(BaseModel):
         name (str): The name of the city.
     """
     def __init__(self):
-        super().__init__()
+        BaseModel.__init__(self)
         self.state_id = ""
         self.name = ""
