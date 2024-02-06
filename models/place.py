@@ -24,7 +24,7 @@ class Place(BaseModel):
     """
 
     def __init__(self):
-        super().__init__()
+        BaseModel.__init__(self)
         self.city_id = ""
         self.user_id = ""
         self.name = ""
