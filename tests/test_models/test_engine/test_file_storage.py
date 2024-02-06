@@ -65,8 +65,9 @@ class TestFileStorage(unittest.TestCase):
 
     def test_attributes(self):
         """Check if attributes exist"""
-        self.assertEqual(hasattr(FileStorage, '_FileStorage__file_path'), True)
-        self.assertEqual(hasattr(FileStorage, '_FileStorage__objects'), True)
+        storage = FileStorage()
+        self.assertEqual(hasattr(storage, '_FileStorage__file_path'), True)
+        self.assertEqual(hasattr(storage, '_FileStorage__objects'), True)
 
     def test_save(self):
         """Check if JSON exists"""

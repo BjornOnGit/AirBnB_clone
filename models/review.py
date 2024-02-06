@@ -14,7 +14,7 @@ class Review(BaseModel):
         text (str): The review.
     """
     def __init__(self):
-        super().__init__()
+        BaseModel.__init__(self)
         self.place_id = ""
         self.user_id = ""
         self.text = ""

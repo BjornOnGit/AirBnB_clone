@@ -23,8 +23,9 @@ class TestingAmenity(unittest.TestCase):
     def tearDown(self):
         """Removes JSON file at the end of a test"""
         try:
-            os.remove("file.json")
-        except FileNotFoundError:
+            if os.path.exists("file.json"):
+                os.remove("file.json")
+        except IOError:
             print("No JSON file to delete")
 
     def test_check_for_docstrings(self):

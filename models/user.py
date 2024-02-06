@@ -2,10 +2,6 @@
 """Defines the User class."""
 #!/usr/bin/python3
 
-"""
-Shows the user details of a User instance
-"""
-
 from models.base_model import BaseModel
 
 
@@ -19,8 +15,18 @@ class User(BaseModel):
     """
 
     def __init__(self):
-        super().__init__()
+        BaseModel.__init__(self)
         self.email = ""
         self.password = ""
         self.first_name = ""
         self.last_name = ""
+    
+    def to_dict(self):
+        """Returns a dictionary containing all key/values of __dict__ of the instance"""
+        return {
+            "__class__": "User",
+            "email": self.email,
+            "password": self.password,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+        }
